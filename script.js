@@ -14,7 +14,11 @@ if (!releaseGrid) return;
 
 const today = new Date();
 today.setHours(0, 0, 0, 0);
+const released = data.releases
+  .filter(release => new Date(`${release.releaseDate}T00:00:00`) <= today)
+  .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
 
+const latestReleaseId = released.length ? released[0].id : null;
 releaseGrid.innerHTML = data.releases.map(release => {
   const releaseDate = new Date(`${release.releaseDate}T00:00:00`);
   const isReleased = releaseDate <= today;
@@ -34,7 +38,7 @@ releaseGrid.innerHTML = data.releases.map(release => {
       </div>
       <p class="meta">${release.artist} · ${dateLabel}</p>
       <h3>${release.title}</h3>
-    <p>${release.featured ? 'Latest Single' : isReleased ? 'Single' : 'Upcoming Single'}</p>
+   <p>${release.id === latestReleaseId ? 'Latest Single' : isReleased ? 'Single' : 'Upcoming Single'}</p>
     </article>
   `;
 }).join('');
