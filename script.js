@@ -9,7 +9,7 @@ async function loadReleaseData() {
 
     const data = await response.json();
  const releaseGrid = document.querySelector('#release-grid');
-
+const upcomingReleaseCards = document.querySelector('#upcoming-release-cards');
 if (!releaseGrid) return;
 
 const today = new Date();
@@ -42,6 +42,35 @@ releaseGrid.innerHTML = data.releases.map(release => {
     </article>
   `;
 }).join('');
+if (upcomingReleaseCards) {
+  const upcoming = data.releases
+    .filter(release => new Date(`${release.releaseDate}T00:00:00`) > today)
+    .sort((a, b) => new Date(a.releaseDate) - new Date(b.releaseDate));
+
+  upcomingReleaseCards.innerHTML = upcoming.map(release => {
+    const releaseDate = new Date(`${release.releaseDate}T00:00:00`);
+
+    const dateLabel = releaseDate.toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    }).toUpperCase();
+
+    return `
+      <article class="release-card upcoming">
+        <div class="release-art">
+          <img src="${release.cover}" alt="${release.title} by ${release.artist}">
+        </div>
+        <div class="release-info">
+          <p class="release-status">COMING ${dateLabel}</p>
+          <h3>${release.title}</h3>
+          <p>${release.artist}</p>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+    
   } catch (error) {
     console.error('SouthKings release data error:', error);
   }
