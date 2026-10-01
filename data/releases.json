@@ -1,0 +1,32 @@
+{
+  "releases": [
+    {
+      "id": "meet-me-tomorrow",
+      "artist": "404//SANITY",
+      "title": "Meet Me Tomorrow",
+      "type": "Single",
+      "releaseDate": "2026-09-22",
+      "cover": "assets/Meet_Me_Tomorrow.PNG",
+      "featured": true,
+      "description": "A message for anyone fighting a battle they don't think they can win. Meet Me Tomorrow turns the focus outward — a reminder to hold on, keep fighting, and make it through today."
+    },
+    {
+      "id": "numb",
+      "artist": "404//SANITY",
+      "title": "Numb",
+      "type": "Single",
+      "releaseDate": "2026-10-06",
+      "cover": "assets/Numb.PNG",
+      "featured": false
+    },
+    {
+      "id": "i-was-here",
+      "artist": "404//SANITY",
+      "title": "I Was Here",
+      "type": "Single",
+      "releaseDate": "2026-10-20",
+      "cover": "assets/I-Was-Here.PNG",
+      "featured": false
+    }
+  ]
+}
