@@ -1,4 +1,4 @@
-const button=document.querySelector('.menu-btn');const nav=document.querySelector('.nav');button.addEventListener('click',()=>{const open=nav.classList.toggle('open');button.setAttribute('aria-expanded',open)});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+const button=document.querySelector('.menu-btn');const nav=document.querySelector('.nav');button?.addEventListener('click',()=>{const open=nav.classList.toggle('open');button.setAttribute('aria-expanded',open)});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 async function loadReleaseData() {
   try {
     const response = await fetch('data/releases.json');
