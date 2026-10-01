@@ -10,7 +10,7 @@ async function loadReleaseData() {
     const data = await response.json();
  const releaseGrid = document.querySelector('#release-grid');
 const upcomingReleaseCards = document.querySelector('#upcoming-release-cards');
-if (!releaseGrid) return;
+
 
 const today = new Date();
 today.setHours(0, 0, 0, 0);
@@ -19,7 +19,7 @@ const released = data.releases
   .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
 
 const latestReleaseId = released.length ? released[0].id : null;
-releaseGrid.innerHTML = data.releases.map(release => {
+if (releaseGrid) releaseGrid.innerHTML = data.releases.map(release => {
   const releaseDate = new Date(`${release.releaseDate}T00:00:00`);
   const isReleased = releaseDate <= today;
 
